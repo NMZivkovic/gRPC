@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option objc_class_prefix = "BLG";
+
+package blogkeeper;
+
+service BlogKeeper {
+  
+  rpc GetInfo(Blog) returns (BlogSummary) {}
+
+  rpc ListArticles(Blog) returns (stream Article) {}
+}
+
+message Blog {
+  string name = 1;
+}
+
+message BlogSummary {
+  string name = 1;
+  int32 number_of_articles = 2;
+  int32 number_of_authors = 3;
+}
+
+message Article {
+  string title = 1;
+  string author = 2;
+  string category = 3;
+}
